@@ -1,0 +1,53 @@
+version: '2'
+volumes:
+    demo-redis-conf-volume:
+    demo-redis-data-volume:
+    demo-mock-api-logs-volume:
+    demo-proxy-logs-volume:
+networks:
+    demo-network:
+        driver: bridge
+services:
+    mock-api:
+        container_name: demo-mock-api-container
+        image: docker-registry.server.kayser.dev/mock-api
+        environment:
+            - MOCK_API_REDIS_ADDRESS=demo-mock-api-redis-container
+            - MOCK_API_REDIS_PORT=6379
+        ports:
+            - 58080:8080
+        networks:
+            - demo-network
+        volumes:
+            - demo-mock-api-logs-volume:/logs
+    redis:
+        container_name: demo-mock-api-redis-container
+        image: redis:5-alpine
+        networks:
+            - demo-network
+        ports:
+            - 56379:6379
+        volumes:
+            - demo-redis-data-volume:/data
+    mock-ui:
+        container_name: demo-mock-ui-container
+        image: docker-registry.server.kayser.dev/mock-ui
+        networks:
+            - demo-network
+        ports:
+            - 50080:80
+        environment:
+            - MOCK_API_BASE_URI=${MOCK_API_BASE_URI}
+    proxy:
+        container_name: demo-proxy-container
+        image: docker-registry.server.kayser.dev/proxy
+        environment:
+            - API_SERVER_URL=http://localhost:58080
+            - PROXY_LOGS_DIR=.
+            - PROXY_APP_LOG_LEVEL=DEBUG
+            - PROXY_3RD_PARTY_LOG_LEVEL=INFO
+            - PROXY_ROOT_LOG_LEVEL=ERROR
+        ports:
+            - 55000:5000
+        volumes:
+            - demo-proxy-logs-volume:/logs
