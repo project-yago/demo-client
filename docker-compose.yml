@@ -50,8 +50,8 @@ services:
         environment:
             - API_SERVER_URL=http://demo-mock-api-container:8080
             - PROXY_LOGS_DIR=.
-            - PROXY_APP_LOG_LEVEL=DEBUG
-            - PROXY_3RD_PARTY_LOG_LEVEL=INFO
+            - PROXY_APP_LOG_LEVEL=INFO
+            - PROXY_3RD_PARTY_LOG_LEVEL=ERROR
             - PROXY_ROOT_LOG_LEVEL=ERROR
         ports:
             - 55000:5000
