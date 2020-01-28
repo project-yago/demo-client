@@ -4,6 +4,7 @@ volumes:
     demo-redis-data-volume:
     demo-mock-api-logs-volume:
     demo-proxy-logs-volume:
+    demo-external-api-logs-volume:
 networks:
     demo-network:
         driver: bridge
@@ -57,5 +58,16 @@ services:
             - 55000:5000
         volumes:
             - demo-proxy-logs-volume:/logs
+        depends_on:
+            - mock-api
+    external-api:
+        container_name: demo-external-api-container
+        image: docker-registry.server.kayser.dev/whiteapp
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev
+        ports:
+            - 58580:8080
+        volumes:
+            - demo-external-api-logs-volume:/logs
         depends_on:
             - mock-api
