@@ -1,42 +1,42 @@
 version: '2'
 volumes:
-    demo-redis-conf-volume:
-    demo-redis-data-volume:
-    demo-mock-api-logs-volume:
-    demo-proxy-logs-volume:
-    demo-external-api-logs-volume:
+    demo-yago-redis-conf-volume:
+    demo-yago-redis-conf-volume:
+    demo-yago-mock-api-logs-volume:
+    demo-yago-proxy-logs-volume:
+    demo-yago-external-api-logs-volume:
 networks:
-    demo-network:
+    demo-yago-network:
         driver: bridge
 services:
     redis:
-        container_name: demo-mock-api-redis-container
+        container_name: demo-yago-mock-api-redis-container
         image: redis:5-alpine
         networks:
-            - demo-network
+            - demo-yago-network
         ports:
             - 56379:6379
         volumes:
-            - demo-redis-data-volume:/data
+            - demo-yago-redis-conf-volume:/data
     mock-api:
-        container_name: demo-mock-api-container
+        container_name: demo-yago-mock-api-container
         image: docker-registry.server.kayser.dev/mock-api
         environment:
-            - MOCK_API_REDIS_ADDRESS=demo-mock-api-redis-container
+            - MOCK_API_REDIS_ADDRESS=demo-yago-mock-api-redis-container
             - MOCK_API_REDIS_PORT=6379
         ports:
             - 58080:8080
         networks:
-            - demo-network
+            - demo-yago-network
         volumes:
-            - demo-mock-api-logs-volume:/logs
+            - demo-yago-mock-api-logs-volume:/logs
         depends_on:
             - redis
     mock-ui:
-        container_name: demo-mock-ui-container
+        container_name: demo-yago-mock-ui-container
         image: docker-registry.server.kayser.dev/mock-ui
         networks:
-            - demo-network
+            - demo-yago-network
         ports:
             - 50080:80
         environment:
@@ -44,12 +44,12 @@ services:
         depends_on:
             - mock-api
     proxy:
-        container_name: demo-proxy-container
+        container_name: demo-yago-proxy-container
         image: docker-registry.server.kayser.dev/proxy
         networks:
-            - demo-network
+            - demo-yago-network
         environment:
-            - API_SERVER_URL=http://demo-mock-api-container:8080
+            - API_SERVER_URL=http://demo-yago-mock-api-container:8080
             - PROXY_LOGS_DIR=.
             - PROXY_APP_LOG_LEVEL=INFO
             - PROXY_3RD_PARTY_LOG_LEVEL=ERROR
@@ -57,17 +57,17 @@ services:
         ports:
             - 55000:5000
         volumes:
-            - demo-proxy-logs-volume:/logs
+            - demo-yago-proxy-logs-volume:/logs
         depends_on:
             - mock-api
     external-api:
-        container_name: demo-external-api-container
+        container_name: demo-yago-external-api-container
         image: docker-registry.server.kayser.dev/whiteapp
         environment:
             - SPRING_PROFILES_ACTIVE=dev
         ports:
             - 58580:8080
         volumes:
-            - demo-external-api-logs-volume:/logs
+            - demo-yago-external-api-logs-volume:/logs
         depends_on:
             - mock-api
