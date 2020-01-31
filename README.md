@@ -17,10 +17,10 @@ Ex: ./init_namespace.sh test-app-client
 
 Demo Container Demo
 
-| Service | Container Name | Port Host |
-| ------ | ------ | ------ |
-| Redis | demo-yago-mock-api-redis-container | 56379 |
-| Mock API | demo-yago-mock-api-container | 58080 |
-| Mock UI | demo-yago-mock-ui-container | 50080 |
-| Proxy | demo-yago-proxy-container | 55000 |
-| White App Server (External API) | demo-yago-external-api-container | 58580 |
+| Service | Container Name | Port Host | Port Docker |
+| ------ | ------ | ------ | ------ |
+| Redis | demo-yago-mock-api-redis-container | 56379 | 56379 |
+| Mock API | demo-yago-mock-api-container | 58080 | 8080 |
+| Mock UI | demo-yago-mock-ui-container | 50080 | 8080 |
+| Proxy | demo-yago-proxy-container | 55000 | 5000 |
+| White App Server (External API) | demo-yago-external-api-container | 58580 | 8080 |
