@@ -19,7 +19,7 @@ Demo Container Demo
 
 | Service | Container Name | Port Host | Port Docker |
 | ------ | ------ | ------ | ------ |
-| Redis | demo-yago-mock-api-redis-container | 56379 | 56379 |
+| Redis | demo-yago-mock-api-redis-container | 56379 | 6379 |
 | Mock API | demo-yago-mock-api-container | 58080 | 8080 |
 | Mock UI | demo-yago-mock-ui-container | 50080 | 8080 |
 | Proxy | demo-yago-proxy-container | 55000 | 5000 |
