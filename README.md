@@ -1,15 +1,16 @@
 # demo-client
 
-curl --location --request PUT 'http://localhost:58080/namespaces' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "name": "<NAMESPACE HERE>"
-}'
+Start Demo
 
-curl --location --request PUT 'http://localhost:58080/agent/config/<NAMESPACE UUID HERE>' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "protocol": "http",
-  "proxyHost": "localhost",
-  "proxyPort": 55000
-}'
+> ./start_demo.sh
+
+Flush redis Database
+
+> ./clean_redisDB.sh
+
+
+Init namespace (create namespace and namespace configuration)
+
+> ./init_namespace.sh <NAMESPACE>
+
+Ex: ./init_namespace.sh test-app-client
