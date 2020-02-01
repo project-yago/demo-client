@@ -1,21 +1,21 @@
 # demo-client
 
-Start Demo
+## Start Demo
 
 > ./start_demo.sh
 
-Flush redis Database
+## Flush redis Database
 
 > ./clean_redisDB.sh
 
 
-Init namespace (create namespace and namespace configuration)
+## Init namespace (create namespace and namespace configuration)
 
-> ./init_namespace.sh <NAMESPACE>
+> ./init_namespace.sh NAMESPACE
 
 Ex: ./init_namespace.sh test-app-client
 
-Demo Container Demo
+## Demo Containers
 
 | Service | Container Name | Port Host | Port Docker |
 | ------ | ------ | ------ | ------ |
