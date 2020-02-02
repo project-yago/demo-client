@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "5ec4db70-87a4-4d20-911f-19b05b5874d6",
+		"name": "Demo Yago",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Payment from scratch",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 100.0,\n    \"currentDate\": \"2020-02-02T01:46:50Z\",\n    \"currency\": \"EUR\",\n    \"customerFrom\": {\n        \"id\": 1\n    },\n    \"customerTo\": {\n        \"id\": 2\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/payments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
