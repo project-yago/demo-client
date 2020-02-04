@@ -13,7 +13,7 @@
 
 > ./init_namespace.sh NAMESPACE
 
-Ex: ./init_namespace.sh test-app-client
+Ex: ./init_namespace.sh BBL_INGENICO
 
 ## Demo Containers
 
