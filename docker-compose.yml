@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 volumes:
     demo-yago-redis-conf-volume:
     demo-yago-redis-conf-volume:
@@ -18,6 +18,7 @@ services:
             - 56379:6379
         volumes:
             - demo-yago-redis-conf-volume:/data
+        restart: unless-stopped
     mock-api:
         container_name: demo-yago-mock-api-container
         image: docker-registry.server.kayser.dev/mock-api
@@ -32,6 +33,7 @@ services:
             - demo-yago-mock-api-logs-volume:/logs
         depends_on:
             - redis
+        restart: unless-stopped
     mock-ui:
         container_name: demo-yago-mock-ui-container
         image: docker-registry.server.kayser.dev/mock-ui
@@ -43,6 +45,7 @@ services:
             - MOCK_API_BASE_URI=${MOCK_API_BASE_URI}
         depends_on:
             - mock-api
+        restart: unless-stopped
     proxy:
         container_name: demo-yago-proxy-container
         image: docker-registry.server.kayser.dev/proxy
@@ -60,6 +63,7 @@ services:
             - demo-yago-proxy-logs-volume:/logs
         depends_on:
             - mock-api
+        restart: unless-stopped
     external-api:
         container_name: demo-yago-external-api-container
         image: docker-registry.server.kayser.dev/whiteapp
@@ -71,3 +75,4 @@ services:
             - demo-yago-external-api-logs-volume:/logs
         depends_on:
             - mock-api
+        restart: unless-stopped
