@@ -2,7 +2,7 @@
 
 docker container start demo-yago-external-api-container
 
-until $(curl --output /dev/null --silent --head --fail http://localhost:58580/management/health); do
+until $(curl --output /dev/null --silent --head --fail http://localhost:28580/management/health); do
     printf '.'
     sleep 2
 done

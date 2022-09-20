@@ -17,7 +17,7 @@ services:
         networks:
             - demo-yago-network
         ports:
-            - 56379:6379
+            - 36379:6379
         volumes:
             - demo-yago-redis-conf-volume:/data
         restart: unless-stopped
@@ -27,8 +27,11 @@ services:
         environment:
             - MOCK_API_REDIS_ADDRESS=demo-yago-mock-api-redis-container
             - MOCK_API_REDIS_PORT=6379
+            - MOCK_API_SECURITY_ENABLED=false
+            #- MOCK_API_SECURITY_OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://localhost:48080/auth/realms/Yago
+            #- MOCK_API_SECURITY_OAUTH2_RESOURCE_SERVER_JWT_JWK_SET_URI=http://localhost:48080/auth/realms/Yago/protocol/openid-connect/certs
         ports:
-            - 58080:8080
+            - 38080:8080
         networks:
             - demo-yago-network
         volumes:
@@ -43,9 +46,12 @@ services:
         networks:
             - demo-yago-network
         ports:
-            - 50080:80
+            - 20080:80
         environment:
-            - MOCK_API_BASE_URI=${MOCK_API_BASE_URI}
+            - MOCK_API_BASE_URI=http://localhost:38080
+            - MOCK_API_AUTH_CLIENT_ID=mockui-yago-pkce
+            - MOCK_API_AUTH_REALM=Yago
+            - MOCK_API_AUTH_SERVER_URL=http://localhost:48080/auth
         depends_on:
             - mock-api
         restart: unless-stopped
@@ -61,7 +67,7 @@ services:
             - PROXY_3RD_PARTY_LOG_LEVEL=ERROR
             - PROXY_ROOT_LOG_LEVEL=ERROR
         ports:
-            - 55000:5000
+            - 25000:5000
         volumes:
             - demo-yago-proxy-logs-volume:/logs
         depends_on:
@@ -75,7 +81,7 @@ services:
         environment:
             - SPRING_PROFILES_ACTIVE=dev
         ports:
-            - 58580:8080
+            - 28580:8080
         volumes:
             - demo-yago-external-api-logs-volume:/logs
         depends_on:
