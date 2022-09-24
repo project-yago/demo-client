@@ -1,6 +1,6 @@
 version: '3'
 volumes:
-    demo-yago-redis-conf-volume:
+    demo-yago-redis-data-volume:
     demo-yago-redis-conf-volume:
     demo-yago-mock-api-logs-volume:
     demo-yago-proxy-logs-volume:
@@ -19,7 +19,8 @@ services:
         ports:
             - 36379:6379
         volumes:
-            - demo-yago-redis-conf-volume:/data
+            - demo-yago-redis-data-volume:/data
+            - demo-yago-redis-conf-volume:/usr/local/etc/redis
         restart: unless-stopped
     mock-api:
         container_name: demo-yago-mock-api-container
