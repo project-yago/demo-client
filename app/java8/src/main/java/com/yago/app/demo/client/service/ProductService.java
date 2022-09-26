@@ -26,7 +26,7 @@ public class ProductService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth("A21AAJICqTeon9nMjxeffkbRTvb0L3wYEQ-Hos7CJ5ADX7oruMww8IyaDu6yaHHv4uGMMTcyR6QesyZx7nL6nZLLMD_ZIgP_g");
+        headers.setBearerAuth("A21AAL_7M9FiSIQqkRk1sdU5KG5aXfVLBzzxkq39nSiHQHibGZ52sw7xsBYg7QBBr4m4aaUP2uUXE34U4xUtWuWPkPvnMl2Mg");
 
         HttpEntity<Void> requestEntityListProducts = new HttpEntity<>(headers);
 
@@ -46,7 +46,9 @@ public class ProductService {
             requestEntityCreateProduct,
             Product.class);
 
-        LOG.info("Product created :" + createProductResponse.getBody());
+        Product createdProduct = createProductResponse.getBody();
+
+        LOG.info("Product created :" + createdProduct);
 
         ResponseEntity<ListProductsResponse> listProductResponse2 = restTemplate.exchange(
             SANDBOX_API_PAYPAL + "/v1/catalogs/products?page_size=100&page=1&total_required=true",
@@ -59,7 +61,7 @@ public class ProductService {
         HttpEntity<Void> requestEntityGetProduct = new HttpEntity<>(headers);
 
         ResponseEntity<Product> getProductResponse = restTemplate.exchange(
-            SANDBOX_API_PAYPAL + "/v1/catalogs/products/" + product.getId(),
+            SANDBOX_API_PAYPAL + "/v1/catalogs/products/" + createdProduct.getId(),
             HttpMethod.GET,
             requestEntityGetProduct,
             Product.class);

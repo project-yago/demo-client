@@ -56,6 +56,13 @@
 			<version>${rest-assured.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+            <groupId>com.kayser.agent</groupId>
+            <artifactId>core-agent</artifactId>
+            <version>${agent.version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
