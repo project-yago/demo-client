@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,4 +28,10 @@ public class Product {
     private String category;
 
     private String imageUrl;
+
+    private String homeUrl;
+
+    private String createTime;
+
+    private String updateTime;
 }

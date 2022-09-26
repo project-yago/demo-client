@@ -13,30 +13,59 @@ import java.util.Collections;
 @Slf4j
 public class ProductService {
 
+    private final static String SANDBOX_API_PAYPAL = "https://api-m.sandbox.paypal.com";
+
     RestTemplate restTemplate;
 
     public ProductService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public Product createProductAndListProducts(Product product) {
+    public Product createProductAndListProducts(final Product product) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth("A21AAIPLyCLmmxw_WDOoprwfBm9iUvYy7-YQqDfw7RW9ICvByjlAEK3hFX3zIWNsDISSnL1Xfloc8o0eTvAM-WL4DguAopxOQ");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth("A21AAJICqTeon9nMjxeffkbRTvb0L3wYEQ-Hos7CJ5ADX7oruMww8IyaDu6yaHHv4uGMMTcyR6QesyZx7nL6nZLLMD_ZIgP_g");
 
-        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<Void> requestEntityListProducts = new HttpEntity<>(headers);
 
-        ResponseEntity<ListProductsResponse> response = restTemplate.exchange("https://api-m.sandbox.paypal.com/v1/catalogs/products?page_size=10&page=1&total_required=true", HttpMethod.GET, requestEntity, ListProductsResponse.class);
+        ResponseEntity<ListProductsResponse> listProductResponse1 = restTemplate.exchange(
+            SANDBOX_API_PAYPAL + "/v1/catalogs/products?page_size=100&page=1&total_required=true",
+            HttpMethod.GET,
+            requestEntityListProducts,
+            ListProductsResponse.class);
 
-        LOG.info("response" + response);
+        LOG.info("list of products before creation :" + listProductResponse1.getBody().getProducts());
 
-        return Product.builder()
-            .id(product.getId())
-            .description(product.getDescription())
-            .type(product.getType())
-            .category(product.getCategory())
-            .imageUrl(product.getImageUrl())
-            .build();
+        HttpEntity<Product> requestEntityCreateProduct = new HttpEntity<>(product, headers);
+
+        ResponseEntity<Product> createProductResponse = restTemplate.exchange(
+            SANDBOX_API_PAYPAL + "/v1/catalogs/products",
+            HttpMethod.POST,
+            requestEntityCreateProduct,
+            Product.class);
+
+        LOG.info("Product created :" + createProductResponse.getBody());
+
+        ResponseEntity<ListProductsResponse> listProductResponse2 = restTemplate.exchange(
+            SANDBOX_API_PAYPAL + "/v1/catalogs/products?page_size=100&page=1&total_required=true",
+            HttpMethod.GET,
+            requestEntityListProducts,
+            ListProductsResponse.class);
+
+        LOG.info("list of products after creation :" + listProductResponse2.getBody().getProducts());
+
+        HttpEntity<Void> requestEntityGetProduct = new HttpEntity<>(headers);
+
+        ResponseEntity<Product> getProductResponse = restTemplate.exchange(
+            SANDBOX_API_PAYPAL + "/v1/catalogs/products/" + product.getId(),
+            HttpMethod.GET,
+            requestEntityGetProduct,
+            Product.class);
+
+        LOG.info("Get product :" + createProductResponse.getBody());
+
+        return createProductResponse.getBody();
     }
 }

@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.MediaType;
 
+import java.util.UUID;
+
 import static io.restassured.RestAssured.given;
 
 @Slf4j
@@ -19,7 +21,7 @@ public class ProductIT extends AbstractIntegrationTests {
     public void createProductAndListProductsTests() {
 
         Product testProduct = Product.builder()
-            .id("111")
+            .id(UUID.randomUUID().toString())
             .name("Test Name")
             .description("Test Description")
             .type("SERVICE")
