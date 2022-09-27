@@ -109,6 +109,8 @@
                             </argLine>
                             <environmentVariables>
                                 <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                                <EXTERNAL_API_CLIENT_ID>${env.EXTERNAL_API_CLIENT_ID}</EXTERNAL_API_CLIENT_ID>
+                                <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -125,6 +127,8 @@
                         <configuration>
                             <environmentVariables>
                                 <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                                <EXTERNAL_API_CLIENT_ID>${env.EXTERNAL_API_CLIENT_ID}</EXTERNAL_API_CLIENT_ID>
+                                <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -146,6 +150,8 @@
                             </argLine>
                             <environmentVariables>
                                 <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                                <EXTERNAL_API_CLIENT_ID>${env.EXTERNAL_API_CLIENT_ID}</EXTERNAL_API_CLIENT_ID>
+                                <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -162,6 +168,8 @@
                         <configuration>
                             <environmentVariables>
                                 <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                                <EXTERNAL_API_CLIENT_ID>${env.EXTERNAL_API_CLIENT_ID}</EXTERNAL_API_CLIENT_ID>
+                                <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
                     </plugin>

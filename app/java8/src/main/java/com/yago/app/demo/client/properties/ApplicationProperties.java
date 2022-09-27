@@ -15,10 +15,14 @@ public class ApplicationProperties {
 
     @Getter
     @Setter
-    @ToString
+    @ToString(exclude = {"clientSecret"})
     public static class ExternalAPI {
 
         private String baseURI;
+
+        private String clientId;
+
+        private String clientSecret;
 
     }
 }
