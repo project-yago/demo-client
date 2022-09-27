@@ -2,6 +2,7 @@ package com.yago.app.demo.client.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -27,11 +28,15 @@ public class Product {
 
     private String category;
 
+    @JsonProperty("image_url")
     private String imageUrl;
 
+    @JsonProperty("home_url")
     private String homeUrl;
 
+    @JsonProperty("create_time")
     private String createTime;
 
+    @JsonProperty("update_time")
     private String updateTime;
 }
