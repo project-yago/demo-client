@@ -19,6 +19,8 @@
 		<rest-assured.version>5.2.0</rest-assured.version>
 
         <agent.version>1.0-SNAPSHOT</agent.version>
+
+        <external-api.base-uri>https://api-m.sandbox.paypal.com</external-api.base-uri>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -105,6 +107,9 @@
                                 -Dport.api=28080
                                 -Drepository.name=Demo-Java8
                             </argLine>
+                            <environmentVariables>
+                                <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                            </environmentVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -118,6 +123,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
+                            <environmentVariables>
+                                <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                            </environmentVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -136,6 +144,9 @@
                                 -Dport.api=38080
                                 -Drepository.name=Demo-Java8
                             </argLine>
+                            <environmentVariables>
+                                <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                            </environmentVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -147,8 +158,11 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
+                            <environmentVariables>
+                                <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                            </environmentVariables>
                         </configuration>
                     </plugin>
                 </plugins>

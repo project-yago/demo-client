@@ -2,6 +2,7 @@ package com.yago.app.demo.client.service;
 
 import com.yago.app.demo.client.model.Product;
 import com.yago.app.demo.client.model.response.ListProductsResponse;
+import com.yago.app.demo.client.properties.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,19 @@ import java.util.Collections;
 @Slf4j
 public class ProductService {
 
-    private final static String SANDBOX_API_PAYPAL = "https://api-m.sandbox.paypal.com";
-
+    ApplicationProperties applicationProperties;
     RestTemplate restTemplate;
 
-    public ProductService(RestTemplate restTemplate) {
+    public ProductService(ApplicationProperties applicationProperties, RestTemplate restTemplate) {
+        this.applicationProperties = applicationProperties;
         this.restTemplate = restTemplate;
+
+        LOG.info("\n************************************************\n ApplicationProperties : " + applicationProperties + "\n************************************************\n");
     }
 
     public Product createProductAndListProducts(final Product product) {
+
+        String SANDBOX_API_PAYPAL = applicationProperties.getExternalAPI().getBaseURI();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
