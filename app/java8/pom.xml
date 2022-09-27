@@ -79,6 +79,15 @@
 					</excludes>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*IT</include>
+                    </includes>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
@@ -89,12 +98,12 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                             <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
                                 -Dhost.api=http://192.99.13.82
                                 -Dport.api=28080
-                                -Drepository.name=Demo
+                                -Drepository.name=Demo-Java8
                             </argLine>
                         </configuration>
                     </plugin>
@@ -107,7 +116,7 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                         </configuration>
                     </plugin>
@@ -120,12 +129,12 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                             <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
                                 -Dhost.api=http://localhost
                                 -Dport.api=38080
-                                -Drepository.name=Demo
+                                -Drepository.name=Demo-Java8
                             </argLine>
                         </configuration>
                     </plugin>
