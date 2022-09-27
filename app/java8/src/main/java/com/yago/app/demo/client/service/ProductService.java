@@ -31,7 +31,6 @@ public class ProductService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth("A21AAJDTeDJgzkNhCDIegeiVEg2y5ySEqaltjLUrsJXVqzNg9Z8KxgmdonGAOoN38aa7VVnFBZCT3_JPxO4wHxftzJEJ8iWEQ");
 
         HttpEntity<Void> requestEntityListProducts = new HttpEntity<>(headers);
 
