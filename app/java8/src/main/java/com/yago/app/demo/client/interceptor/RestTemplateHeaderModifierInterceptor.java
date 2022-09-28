@@ -15,9 +15,11 @@ import java.io.IOException;
 import java.util.Collections;
 
 @Component
+
 public class RestTemplateHeaderModifierInterceptor implements ClientHttpRequestInterceptor {
 
-    ApplicationProperties applicationProperties;
+    private ApplicationProperties applicationProperties;
+    private String accessToken;
 
     public RestTemplateHeaderModifierInterceptor(ApplicationProperties applicationProperties) {
         this.applicationProperties = applicationProperties;
@@ -26,7 +28,11 @@ public class RestTemplateHeaderModifierInterceptor implements ClientHttpRequestI
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
 
-        request.getHeaders().setBearerAuth(getAccessToken());
+        if (accessToken == null) {
+            accessToken = getAccessToken();
+        }
+
+        request.getHeaders().setBearerAuth(accessToken);
         ClientHttpResponse response = execution.execute(request, body);
         return response;
     }
