@@ -70,7 +70,7 @@ public class ProductService {
             requestEntityGetProduct,
             Product.class);
 
-        LOG.info("Get product :" + createProductResponse.getBody());
+        LOG.info("Get product :" + getProductResponse.getBody());
 
         return createProductResponse.getBody();
     }
