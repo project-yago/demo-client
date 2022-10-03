@@ -1,6 +1,6 @@
-package com.yago.app.demo.client;
+package com.yago.app.demo.client.java8;
 
-import com.yago.app.demo.client.properties.ApplicationProperties;
+import com.yago.app.demo.client.java8.properties.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

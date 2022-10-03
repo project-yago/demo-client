@@ -1,8 +1,8 @@
-package com.yago.app.demo.client.service;
+package com.yago.app.demo.client.java8.service;
 
-import com.yago.app.demo.client.model.Product;
-import com.yago.app.demo.client.model.response.ListProductsResponse;
-import com.yago.app.demo.client.properties.ApplicationProperties;
+import com.yago.app.demo.client.java8.model.Product;
+import com.yago.app.demo.client.java8.model.response.ListProductsResponse;
+import com.yago.app.demo.client.java8.properties.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

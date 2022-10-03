@@ -1,4 +1,4 @@
-package com.yago.app.demo.client;
+package com.yago.app.demo.client.java8;
 
 import io.restassured.RestAssured;
 import org.apache.commons.lang3.StringUtils;

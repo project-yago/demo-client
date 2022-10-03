@@ -1,4 +1,4 @@
-package com.yago.app.demo.client;
+package com.yago.app.demo.client.java8;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

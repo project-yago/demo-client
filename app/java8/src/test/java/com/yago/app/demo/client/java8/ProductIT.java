@@ -1,6 +1,6 @@
-package com.yago.app.demo.client;
+package com.yago.app.demo.client.java8;
 
-import com.yago.app.demo.client.model.Product;
+import com.yago.app.demo.client.java8.model.Product;
 
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;

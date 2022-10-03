@@ -1,8 +1,8 @@
-package com.yago.app.demo.client.model.response;
+package com.yago.app.demo.client.java8.model.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.yago.app.demo.client.model.Product;
+import com.yago.app.demo.client.java8.model.Product;
 import lombok.*;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.yago.app.demo.client.controller;
+package com.yago.app.demo.client.java8.controller;
 
-import com.yago.app.demo.client.model.Product;
-import com.yago.app.demo.client.service.ProductService;
+import com.yago.app.demo.client.java8.model.Product;
+import com.yago.app.demo.client.java8.service.ProductService;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.POST;
