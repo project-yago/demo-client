@@ -1,4 +1,4 @@
-package com.yago.app.demo.client.model;
+package com.yago.app.demo.client.java17.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

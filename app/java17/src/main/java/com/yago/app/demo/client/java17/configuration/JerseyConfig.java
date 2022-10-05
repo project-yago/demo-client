@@ -1,9 +1,8 @@
-package com.yago.app.demo.client.configuration;
+package com.yago.app.demo.client.java17.configuration;
 
-import com.yago.app.demo.client.controller.ProductController;
+import com.yago.app.demo.client.java17.controller.ProductController;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 public class JerseyConfig extends ResourceConfig {

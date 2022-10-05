@@ -1,16 +1,12 @@
-package com.yago.app.demo.client;
+package com.yago.app.demo.client.java17;
 
-import com.yago.app.demo.client.model.Product;
+import com.yago.app.demo.client.java17.model.Product;
 
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.MediaType;
-
-import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 

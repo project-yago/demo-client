@@ -1,7 +1,7 @@
-package com.yago.app.demo.client.configuration;
+package com.yago.app.demo.client.java17.configuration;
 
-import com.yago.app.demo.client.interceptor.RestTemplateHeaderModifierInterceptor;
-import com.yago.app.demo.client.properties.ApplicationProperties;
+import com.yago.app.demo.client.java17.interceptor.RestTemplateHeaderModifierInterceptor;
+import com.yago.app.demo.client.java17.properties.ApplicationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

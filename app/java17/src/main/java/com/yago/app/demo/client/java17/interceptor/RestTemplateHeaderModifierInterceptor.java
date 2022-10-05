@@ -1,7 +1,7 @@
-package com.yago.app.demo.client.interceptor;
+package com.yago.app.demo.client.java17.interceptor;
 
-import com.yago.app.demo.client.model.response.AccessTokenResponse;
-import com.yago.app.demo.client.properties.ApplicationProperties;
+import com.yago.app.demo.client.java17.properties.ApplicationProperties;
+import com.yago.app.demo.client.java17.model.response.AccessTokenResponse;
 import org.springframework.http.*;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;

@@ -1,4 +1,4 @@
-package com.yago.app.demo.client.properties;
+package com.yago.app.demo.client.java17.properties;
 
 import lombok.Getter;
 import lombok.Setter;

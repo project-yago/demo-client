@@ -1,8 +1,8 @@
-package com.yago.app.demo.client.service;
+package com.yago.app.demo.client.java17.service;
 
-import com.yago.app.demo.client.model.Product;
-import com.yago.app.demo.client.model.response.ListProductsResponse;
-import com.yago.app.demo.client.properties.ApplicationProperties;
+import com.yago.app.demo.client.java17.model.Product;
+import com.yago.app.demo.client.java17.model.response.ListProductsResponse;
+import com.yago.app.demo.client.java17.properties.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
