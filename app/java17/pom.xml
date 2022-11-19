@@ -90,6 +90,33 @@
                     </includes>
                 </configuration>
             </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>local-with-agent</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                                -Dhost.api=http://localhost
+                                -Dport.api=8080
+                                -Drepository.name=TestAgentLocal
+                                -Dsecurity.server.oauth2=http://localhost:18080/auth/realms/Yago/protocol/openid-connect/token
+                                -Dsecurity.client-id=${env.LOCAL_CLIENT_ID}
+                                -Dsecurity.client-secret=${env.LOCAL_CLIENT_SECRET}
+                            </argLine>
+                            <environmentVariables>
+                                <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                                <EXTERNAL_API_CLIENT_ID>${env.EXTERNAL_API_CLIENT_ID}</EXTERNAL_API_CLIENT_ID>
+                                <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
+                            </environmentVariables>
+                        </configuration>
+                    </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -108,10 +135,10 @@
                                     <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
                                 </requireEnvironmentVariable>
                                 <requireEnvironmentVariable>
-                                    <variableName>YAGO_SANDBOX_CLIENT_ID</variableName>
+                                            <variableName>LOCAL_CLIENT_ID</variableName>
                                 </requireEnvironmentVariable>
                                 <requireEnvironmentVariable>
-                                    <variableName>YAGO_SANDBOX_CLIENT_SECRET</variableName>
+                                            <variableName>LOCAL_CLIENT_SECRET</variableName>
                                 </requireEnvironmentVariable>
                             </rules>
                             <fail>true</fail>
@@ -121,8 +148,7 @@
 			</plugin>
 		</plugins>
 	</build>
-
-    <profiles>
+        </profile>
         <profile>
             <id>yago-with-agent</id>
             <build>
@@ -151,6 +177,85 @@
                                 <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-environments-variables-are-set</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>yago-ip-http-with-agent</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                                -Dhost.api=http://192.99.13.82
+                                -Dport.api=28180
+                                -Drepository.name=Demo_HTTPS
+                                -Dsecurity.server.oauth2=https://keycloak.server.kayser.dev/auth/realms/Yago/protocol/openid-connect/token
+                                -Dsecurity.client-id=${env.YAGO_CLIENT_ID}
+                                -Dsecurity.client-secret=${env.YAGO_CLIENT_SECRET}
+                                -Djdk.http.auth.tunneling.disabledSchemes=''
+                            </argLine>
+                            <environmentVariables>
+                                <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
+                                <EXTERNAL_API_CLIENT_ID>${env.EXTERNAL_API_CLIENT_ID}</EXTERNAL_API_CLIENT_ID>
+                                <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
+                            </environmentVariables>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-environments-variables-are-set</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -186,6 +291,35 @@
                                 <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-environments-variables-are-set</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -240,6 +374,35 @@
                             </environmentVariables>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-environments-variables-are-set</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_SANDBOX_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_SANDBOX_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -254,7 +417,10 @@
                             <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
                                 -Dhost.api=http://localhost
                                 -Dport.api=38080
-                                -Drepository.name=Demo-Java17
+                                -Drepository.name=TestAgentDemoLocal
+                                -Dsecurity.server.oauth2=http://docker.for.mac.localhost:48080/auth/realms/Yago/protocol/openid-connect/token
+                                -Dsecurity.client-id=${env.DOCKER_LOCAL_CLIENT_ID}
+                                -Dsecurity.client-secret=${env.DOCKER_LOCAL_CLIENT_SECRET}
                                 --add-opens=java.base/java.lang=ALL-UNNAMED
                                 --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
                                 --add-opens=java.base/java.io=ALL-UNNAMED
@@ -271,6 +437,35 @@
                                 <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-environments-variables-are-set</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>DOCKER_LOCAL_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>DOCKER_LOCAL_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -289,6 +484,29 @@
                                 <EXTERNAL_API_CLIENT_SECRET>${env.EXTERNAL_API_CLIENT_SECRET}</EXTERNAL_API_CLIENT_SECRET>
                             </environmentVariables>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-environments-variables-are-set</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

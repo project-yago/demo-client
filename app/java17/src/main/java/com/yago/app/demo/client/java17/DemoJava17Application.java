@@ -13,6 +13,10 @@ public class DemoJava17Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoJava17Application.class, args);
+
+        LOG.info("===========================================================");
+        LOG.info("=================== Application started ===================");
+        LOG.info("===========================================================");
 	}
 
 }
