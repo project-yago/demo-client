@@ -391,7 +391,10 @@
                             <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
                                 -Dhost.api=http://localhost
                                 -Dport.api=38080
-                                -Drepository.name=Demo-Java8
+                                -Drepository.name=TestAgentDemoLocal
+                                -Dsecurity.server.oauth2=http://docker.for.mac.localhost:48080/auth/realms/Yago/protocol/openid-connect/token
+                                -Dsecurity.client-id=${env.DOCKER_LOCAL_CLIENT_ID}
+                                -Dsecurity.client-secret=${env.DOCKER_LOCAL_CLIENT_SECRET}
                             </argLine>
                             <environmentVariables>
                                 <EXTERNAL_API_BASE_URI>${external-api.base-uri}</EXTERNAL_API_BASE_URI>
@@ -416,6 +419,12 @@
                                         </requireEnvironmentVariable>
                                         <requireEnvironmentVariable>
                                             <variableName>EXTERNAL_API_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>DOCKER_LOCAL_CLIENT_ID</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>DOCKER_LOCAL_CLIENT_SECRET</variableName>
                                         </requireEnvironmentVariable>
                                     </rules>
                                     <fail>true</fail>

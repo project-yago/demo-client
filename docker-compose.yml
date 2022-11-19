@@ -28,9 +28,12 @@ services:
         environment:
             - MOCK_API_REDIS_ADDRESS=demo-yago-mock-api-redis-container
             - MOCK_API_REDIS_PORT=6379
-            - MOCK_API_SECURITY_ENABLED=false
-            #- MOCK_API_SECURITY_OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://localhost:48080/auth/realms/Yago
-            #- MOCK_API_SECURITY_OAUTH2_RESOURCE_SERVER_JWT_JWK_SET_URI=http://localhost:48080/auth/realms/Yago/protocol/openid-connect/certs
+            - MOCK_API_SECURITY_ENABLED=true
+            - MOCK_API_SECURITY_OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://docker.for.mac.localhost:48080/auth/realms/Yago
+            - MOCK_API_SECURITY_OAUTH2_RESOURCE_SERVER_JWT_JWK_SET_URI=http://docker.for.mac.localhost:48080/auth/realms/Yago/protocol/openid-connect/certs
+            - MOCK_API_APP_LOG_LEVEL=DEBUG
+            - MOCK_API_JERSEY_LOG_LEVEL=DEBUG
+            - MOCK_API_SPRING_SECURITY_LOG_LEVEL=TRACE
         ports:
             - 38080:8080
         networks:
@@ -49,10 +52,10 @@ services:
         ports:
             - 20080:80
         environment:
-            - MOCK_API_BASE_URI=http://localhost:38080
+            - MOCK_API_BASE_URI=http://docker.for.mac.localhost:38080
             - MOCK_API_AUTH_CLIENT_ID=mockui-yago-pkce
             - MOCK_API_AUTH_REALM=Yago
-            - MOCK_API_AUTH_SERVER_URL=http://localhost:48080/auth
+            - MOCK_API_AUTH_SERVER_URL=http://docker.for.mac.localhost:48080/auth
         depends_on:
             - mock-api
         restart: unless-stopped
@@ -64,7 +67,7 @@ services:
         environment:
             - API_SERVER_URL=http://demo-yago-mock-api-container:8080
             - PROXY_LOGS_DIR=.
-            - PROXY_APP_LOG_LEVEL=INFO
+            - PROXY_APP_LOG_LEVEL=DEBUG
             - PROXY_3RD_PARTY_LOG_LEVEL=ERROR
             - PROXY_ROOT_LOG_LEVEL=ERROR
         ports:
@@ -90,7 +93,7 @@ services:
         restart: unless-stopped
     postgres:
         container_name: demo-yago-postgres-container
-        image: postgres
+        image: postgres:14
         networks:
             - demo-yago-network
         volumes:
