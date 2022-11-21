@@ -12,7 +12,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 public class DemoJava11Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoJava11Application.class, args);
+		SpringApplication.run(DemoJava11Application.class, args);
+
+        LOG.info("===========================================================");
+        LOG.info("=================== Application started ===================");
+        LOG.info("===========================================================");
     }
 
 }
