@@ -18,6 +18,8 @@ public class ProductIT extends AbstractIntegrationTests {
     @Test
     public void createProductAndListProductsTests() {
 
+        String useLessUUID = UUID.randomUUID().toString();
+
         Product testProduct = Product.builder()
             .id(UUID.randomUUID().toString())
             //.id("123456789")
