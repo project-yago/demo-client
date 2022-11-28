@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.MediaType;
 
-//import java.util.UUID;
+import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 
@@ -18,8 +18,10 @@ public class ProductIT extends AbstractIntegrationTests {
     @Test
     public void createProductAndListProductsTests() {
 
+        String useLessUUID = UUID.randomUUID().toString();
+
         Product testProduct = Product.builder()
-            //.id(UUID.randomUUID().toString())
+            .id(UUID.randomUUID().toString())
             //.id("123456789")
             .name("Test Name")
             .description("Test Description")

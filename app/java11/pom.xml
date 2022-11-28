@@ -284,6 +284,7 @@
                                 -Dsecurity.server.oauth2=https://keycloak.server.kayser.dev/auth/realms/Yago/protocol/openid-connect/token
                                 -Dsecurity.client-id=${env.YAGO_CLIENT_ID}
                                 -Dsecurity.client-secret=${env.YAGO_CLIENT_SECRET}
+                                -Djdk.http.auth.tunneling.disabledSchemes=''
                                 --add-opens=java.base/java.lang=ALL-UNNAMED
                                 --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
                                 --add-opens=java.base/java.io=ALL-UNNAMED
