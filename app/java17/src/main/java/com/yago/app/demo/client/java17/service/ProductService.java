@@ -6,6 +6,7 @@ import com.yago.app.demo.client.java17.properties.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -25,6 +26,8 @@ public class ProductService {
     }
 
     public Product createProductAndListProducts(final Product product) {
+
+        LOG.info("************ Product in input ************ : " + product);
 
         String SANDBOX_API_PAYPAL = applicationProperties.getExternalAPI().getBaseURI();
 
@@ -64,8 +67,10 @@ public class ProductService {
 
         HttpEntity<Void> requestEntityGetProduct = new HttpEntity<>(headers);
 
+        String productIdToGet = product.getId() != null ? product.getId() : createdProduct.getId();
+
         ResponseEntity<Product> getProductResponse = restTemplate.exchange(
-            SANDBOX_API_PAYPAL + "/v1/catalogs/products/" + createdProduct.getId(),
+            SANDBOX_API_PAYPAL + "/v1/catalogs/products/" + productIdToGet,
             HttpMethod.GET,
             requestEntityGetProduct,
             Product.class);
