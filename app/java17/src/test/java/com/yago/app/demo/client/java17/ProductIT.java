@@ -4,10 +4,11 @@ import com.yago.app.demo.client.java17.model.Product;
 
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.MediaType;
-
+import java.util.Random;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
@@ -20,11 +21,39 @@ public class ProductIT extends AbstractIntegrationTests {
 
         String useLessUUID = UUID.randomUUID().toString();
 
+        String randomUUID = UUID.randomUUID().toString();
+
+        Random random = new Random();
+
+        Integer randomInteger = Math.abs(random.nextInt(100000));
+        Integer randomInteger2 = Math.abs(random.nextInt());
+
+        LOG.info("randomInteger : " + randomInteger);
+        LOG.info("randomInteger2 : " + randomInteger2);
+
+        Long randomLong = Math.abs(random.nextLong());
+        Long randomLong2 = Math.abs(random.nextLong());
+
+        LOG.info("randomLong : " + randomLong);
+        LOG.info("randomLong2 : " + randomLong2);
+
+        Double randomDouble = random.nextDouble();
+        Double randomDouble2 = random.nextDouble();
+
+        LOG.info("randomDouble : " + randomDouble);
+        LOG.info("randomDouble2 : " + randomDouble2);
+
+        Double randomDouble3 = Math.random();
+
+        LOG.info("randomDouble3 : " + randomDouble3);
+
+        String testName = "Test Name " + randomInteger;
+        String testDescription = "Test Description " + randomInteger;
+
         Product testProduct = Product.builder()
-            .id(UUID.randomUUID().toString())
-            //.id("123456789")
-            .name("Test Name")
-            .description("Test Description")
+            .id(randomUUID)
+            .name(testName)
+            .description(testDescription)
             .type("SERVICE")
             .category("SOFTWARE")
             .imageUrl("https://example.com/streaming.jpg")
@@ -40,7 +69,13 @@ public class ProductIT extends AbstractIntegrationTests {
                 .statusCode(200)
                 .extract().response();
 
-        LOG.info("response : " + response.asString());
+        LOG.info("response : " + response.asPrettyString());
+
+        Product responseProduct = response.getBody().as(Product.class);
+
+        Assert.assertEquals("Id is equals ?", randomUUID, responseProduct.getId());
+        Assert.assertEquals("Name is equals ?", testName, responseProduct.getName());
+        Assert.assertEquals("Description is equals ?", testDescription, responseProduct.getDescription());
 
     }
 }
