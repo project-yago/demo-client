@@ -27,10 +27,24 @@ public class ProductIT extends AbstractIntegrationTests {
         Integer randomInteger = Math.abs(random.nextInt(100000));
         Integer randomInteger2 = Math.abs(random.nextInt());
 
+        LOG.info("randomInteger : " + randomInteger);
+        LOG.info("randomInteger2 : " + randomInteger2);
+
+        Long randomLong = Math.abs(random.nextLong());
+        Long randomLong2 = Math.abs(random.nextLong());
+
+        LOG.info("randomLong : " + randomLong);
+        LOG.info("randomLong2 : " + randomLong2);
+
         Double randomDouble = random.nextDouble();
         Double randomDouble2 = random.nextDouble();
 
+        LOG.info("randomDouble : " + randomDouble);
+        LOG.info("randomDouble2 : " + randomDouble2);
+
         Double randomDouble3 = Math.random();
+
+        LOG.info("randomDouble3 : " + randomDouble3);
 
         String testName = "Test Name " + randomInteger;
         String testDescription = "Test Description " + randomInteger;
