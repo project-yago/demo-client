@@ -20,6 +20,8 @@
 
         <agent.version>1.0-java11-SNAPSHOT</agent.version>
 
+        <javafaker.version>1.0.2</javafaker.version>
+
         <external-api.base-uri>https://api-m.sandbox.paypal.com</external-api.base-uri>
     </properties>
     <dependencies>
@@ -64,6 +66,12 @@
             <artifactId>core-agent</artifactId>
             <version>${agent.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
         </dependency>
     </dependencies>
 

@@ -1,7 +1,7 @@
 package com.yago.app.demo.client.java11;
 
+import com.github.javafaker.Faker;
 import com.yago.app.demo.client.java11.model.Product;
-
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -21,7 +21,11 @@ public class ProductIT extends AbstractIntegrationTests {
 
         String useLessUUID = UUID.randomUUID().toString();
 
+        LOG.info("useLessUUID : " + useLessUUID);
+
         String randomUUID = UUID.randomUUID().toString();
+
+        LOG.info("randomUUID : " + randomUUID);
 
         Random random = new Random();
 
@@ -37,6 +41,12 @@ public class ProductIT extends AbstractIntegrationTests {
         LOG.info("randomLong : " + randomLong);
         LOG.info("randomLong2 : " + randomLong2);
 
+        Float randomFloat = random.nextFloat();
+        Float randomFloat2 = random.nextFloat();
+
+        LOG.info("randomFloat : " + randomFloat);
+        LOG.info("randomFloat2 : " + randomFloat2);
+
         Double randomDouble = random.nextDouble();
         Double randomDouble2 = random.nextDouble();
 
@@ -46,6 +56,24 @@ public class ProductIT extends AbstractIntegrationTests {
         Double randomDouble3 = Math.random();
 
         LOG.info("randomDouble3 : " + randomDouble3);
+
+        Boolean randomBoolean = random.nextBoolean();
+        Boolean randomBoolean2 = random.nextBoolean();
+
+        LOG.info("randomBoolean : " + randomBoolean);
+        LOG.info("randomBoolean2 : " + randomBoolean2);
+
+        Faker faker = new Faker();
+
+        String streetName = faker.address().streetName();
+        String number = faker.address().buildingNumber();
+        String city = faker.address().city();
+        String country = faker.address().country();
+
+        LOG.info("streetName : " + streetName);
+        LOG.info("number : " + number);
+        LOG.info("city : " + city);
+        LOG.info("country : " + country);
 
         String testName = "Test Name " + randomInteger;
         String testDescription = "Test Description " + randomInteger;

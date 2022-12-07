@@ -57,6 +57,12 @@ public class ProductIT extends AbstractIntegrationTests {
 
         LOG.info("randomDouble3 : " + randomDouble3);
 
+        Boolean randomBoolean = random.nextBoolean();
+        Boolean randomBoolean2 = random.nextBoolean();
+
+        LOG.info("randomBoolean : " + randomBoolean);
+        LOG.info("randomBoolean2 : " + randomBoolean2);
+
         Faker faker = new Faker();
 
         String streetName = faker.address().streetName();
