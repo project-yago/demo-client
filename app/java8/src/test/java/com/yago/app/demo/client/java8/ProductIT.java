@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import com.yago.app.demo.client.java8.model.Product;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.MediaType;
@@ -101,9 +101,9 @@ public class ProductIT extends AbstractIntegrationTests {
 
         Product responseProduct = response.getBody().as(Product.class);
 
-        Assert.assertEquals("Id is equals ?", randomUUID, responseProduct.getId());
-        Assert.assertEquals("Name is equals ?", testName, responseProduct.getName());
-        Assert.assertEquals("Description is equals ?", testDescription, responseProduct.getDescription());
+        Assertions.assertEquals(randomUUID, responseProduct.getId(), "Id is equals ?");
+        Assertions.assertEquals(testName, responseProduct.getName(), "Name is equals ?");
+        Assertions.assertEquals(testDescription, responseProduct.getDescription(), "Description is equals ?");
 
     }
 }
