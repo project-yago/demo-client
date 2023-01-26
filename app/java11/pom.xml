@@ -98,6 +98,26 @@
                     </includes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <executions>
+                    <execution>
+                        <!-- the wget goal actually binds itself to this phase by default -->
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://project-yago-bucket.s3.eu-west-3.amazonaws.com/yago/agent/java11/core-agent-${agent.version}.jar</url>
+                            <outputFileName>core-agent.jar</outputFileName>
+                            <!-- default target location, just to demonstrate the parameter -->
+                            <outputDirectory>${project.build.directory}/yago/agent</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -110,7 +130,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                            <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=http://localhost
                                 -Dport.api=8080
                                 -Drepository.name=TestAgentLocal
@@ -165,7 +185,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                            <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=http://192.99.13.82
                                 -Dport.api=28080
                                 -Drepository.name=Demo
@@ -220,7 +240,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                            <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=http://192.99.13.82
                                 -Dport.api=28180
                                 -Drepository.name=Demo_HTTPS
@@ -285,7 +305,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                            <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=https://secure.mock-api.project-yago.com
                                 -Dport.api=443
                                 -Drepository.name=Demo_HTTPS
@@ -350,7 +370,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                            <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=https://api.mock.sandbox.project-yago.com
                                 -Dport.api=443
                                 -Drepository.name=Public_Sandbox
@@ -432,7 +452,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <argLine>-javaagent:${settings.localRepository}/com/kayser/agent/core-agent/${agent.version}/core-agent-${agent.version}.jar
+                            <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=http://localhost
                                 -Dport.api=38080
                                 -Drepository.name=TestAgentDemoLocal
