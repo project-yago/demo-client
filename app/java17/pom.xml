@@ -110,10 +110,11 @@
                             <goal>wget</goal>
                         </goals>
                         <configuration>
-                            <url>https://project-yago-bucket.s3.eu-west-3.amazonaws.com/yago/agent/java17/core-agent-${agent.version}.jar</url>
+                            <url>https://d1owpzk4agi26k.cloudfront.net/yago/agent/java17/core-agent-${agent.version}.jar</url>
                             <outputFileName>core-agent.jar</outputFileName>
                             <!-- default target location, just to demonstrate the parameter -->
                             <outputDirectory>${project.build.directory}/yago/agent</outputDirectory>
+                            <alwaysVerifyChecksum>true</alwaysVerifyChecksum>
                         </configuration>
                     </execution>
                 </executions>
