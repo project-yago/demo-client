@@ -18,7 +18,7 @@
 
         <rest-assured.version>5.2.0</rest-assured.version>
 
-        <agent.version>1.0-java11-SNAPSHOT</agent.version>
+        <agent.version>1.0.0-java11</agent.version>
 
         <javafaker.version>1.0.2</javafaker.version>
 
