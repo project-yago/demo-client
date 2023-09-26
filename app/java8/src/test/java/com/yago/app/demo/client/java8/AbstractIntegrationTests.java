@@ -25,25 +25,26 @@ public abstract class AbstractIntegrationTests {
 
         String hostAPIProperty = System.getProperty("host.api");
 
-        if (StringUtils.isNotEmpty(hostAPIProperty)) {
-            System.out.println(" __     __                                          _                      _     _          _  ");
-            System.out.println(" \\ \\   / /                    /\\                   | |                    | |   | |        | |");
-            System.out.println("  \\ \\_/ /_ _  __ _  ___      /  \\   __ _  ___ _ __ | |_    ___ _ __   __ _| |__ | | ___  __| |");
-            System.out.println("   \\   / _` |/ _` |/ _ \\    / /\\ \\ / _` |/ _ \\ '_ \\| __|  / _ \\ '_ \\ / _` | '_ \\| |/ _ \\/ _` |");
-            System.out.println("    | | (_| | (_| | (_) |  / ____ \\ (_| |  __/ | | | |_  |  __/ | | | (_| | |_) | |  __/ (_| |");
-            System.out.println("    |_|\\__,_|\\__, |\\___/  /_/    \\_\\__, |\\___|_| |_|\\__|  \\___|_| |_|\\__,_|_.__/|_|\\___|\\__,_|");
-            System.out.println("              __/ |                 __/ |                                                     ");
-            System.out.println("             |___/                 |___/                                                      ");
-        } else {
-            System.out.println(" __     __                                          _         _ _           _     _          _ ");
-            System.out.println(" \\ \\   / /                    /\\                   | |       | (_)         | |   | |        | |");
-            System.out.println("  \\ \\_/ /_ _  __ _  ___      /  \\   __ _  ___ _ __ | |_    __| |_ ___  __ _| |__ | | ___  __| |");
-            System.out.println("   \\   / _` |/ _` |/ _ \\    / /\\ \\ / _` |/ _ \\ '_ \\| __|  / _` | / __|/ _` | '_ \\| |/ _ \\/ _` |");
-            System.out.println("    | | (_| | (_| | (_) |  / ____ \\ (_| |  __/ | | | |_  | (_| | \\__ \\ (_| | |_) | |  __/ (_| |");
-            System.out.println("    |_|\\__,_|\\__, |\\___/  /_/    \\_\\__, |\\___|_| |_|\\__|  \\__,_|_|___/\\__,_|_.__/|_|\\___|\\__,_|");
-            System.out.println("              __/ |                 __/ |                                                      ");
-            System.out.println("             |___/                 |___/                                                       ");
-        }
+//        if (StringUtils.isNotEmpty(hostAPIProperty)) {
+//            System.out.println(" __     __                                          _                      _     _          _  ");
+//            System.out.println(" \\ \\   / /                    /\\                   | |                    | |   | |        | |");
+//            System.out.println("  \\ \\_/ /_ _  __ _  ___      /  \\   __ _  ___ _ __ | |_    ___ _ __   __ _| |__ | | ___  __| |");
+//            System.out.println("   \\   / _` |/ _` |/ _ \\    / /\\ \\ / _` |/ _ \\ '_ \\| __|  / _ \\ '_ \\ / _` | '_ \\| |/ _ \\/ _` |");
+//            System.out.println("    | | (_| | (_| | (_) |  / ____ \\ (_| |  __/ | | | |_  |  __/ | | | (_| | |_) | |  __/ (_| |");
+//            System.out.println("    |_|\\__,_|\\__, |\\___/  /_/    \\_\\__, |\\___|_| |_|\\__|  \\___|_| |_|\\__,_|_.__/|_|\\___|\\__,_|");
+//            System.out.println("              __/ |                 __/ |                                                     ");
+//            System.out.println("             |___/                 |___/                                                      ");
+//        }
+//        else {
+//            System.out.println(" __     __                                          _         _ _           _     _          _ ");
+//            System.out.println(" \\ \\   / /                    /\\                   | |       | (_)         | |   | |        | |");
+//            System.out.println("  \\ \\_/ /_ _  __ _  ___      /  \\   __ _  ___ _ __ | |_    __| |_ ___  __ _| |__ | | ___  __| |");
+//            System.out.println("   \\   / _` |/ _` |/ _ \\    / /\\ \\ / _` |/ _ \\ '_ \\| __|  / _` | / __|/ _` | '_ \\| |/ _ \\/ _` |");
+//            System.out.println("    | | (_| | (_| | (_) |  / ____ \\ (_| |  __/ | | | |_  | (_| | \\__ \\ (_| | |_) | |  __/ (_| |");
+//            System.out.println("    |_|\\__,_|\\__, |\\___/  /_/    \\_\\__, |\\___|_| |_|\\__|  \\__,_|_|___/\\__,_|_.__/|_|\\___|\\__,_|");
+//            System.out.println("              __/ |                 __/ |                                                      ");
+//            System.out.println("             |___/                 |___/                                                       ");
+//        }
 
 
     }

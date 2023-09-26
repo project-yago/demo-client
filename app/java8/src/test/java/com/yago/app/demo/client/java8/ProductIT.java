@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.MediaType;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.UUID;
 
@@ -18,6 +19,12 @@ public class ProductIT extends AbstractIntegrationTests {
 
     @Test
     public void createProductAndListProductsTests() {
+
+        LocalDateTime localDateTime1 = LocalDateTime.now();
+        LocalDateTime localDateTime2 = LocalDateTime.now();
+
+        LOG.info("localDateTime1 : " + localDateTime1);
+        LOG.info("localDateTime2 : " + localDateTime2);
 
         String useLessUUID = UUID.randomUUID().toString();
 

@@ -18,11 +18,12 @@
 
         <rest-assured.version>5.2.0</rest-assured.version>
 
-        <agent.version>1.0-SNAPSHOT</agent.version>
+        <agent.version>1.0.0</agent.version>
 
         <javafaker.version>1.0.2</javafaker.version>
 
         <external-api.base-uri>https://api-m.sandbox.paypal.com</external-api.base-uri>
+<!--        <external-api.base-uri>https://api-m.sandbox.paypal.com2</external-api.base-uri>-->
     </properties>
     <dependencies>
         <dependency>
@@ -350,7 +351,7 @@
                             <argLine>-javaagent:${project.build.directory}/yago/agent/core-agent.jar
                                 -Dhost.api=https://api.mock.sandbox.project-yago.com
                                 -Dport.api=443
-                                -Drepository.name=Public_Sandbox
+                                -Drepository.name=${env.YAGO_SANDBOX_NAMESPACE}
                                 -Dsecurity.server.oauth2=https://keycloak.sandbox.project-yago.com/auth/realms/Yago/protocol/openid-connect/token
                                 -Dsecurity.client-id=${env.YAGO_SANDBOX_CLIENT_ID}
                                 -Dsecurity.client-secret=${env.YAGO_SANDBOX_CLIENT_SECRET}
@@ -384,6 +385,9 @@
                                         </requireEnvironmentVariable>
                                         <requireEnvironmentVariable>
                                             <variableName>YAGO_SANDBOX_CLIENT_SECRET</variableName>
+                                        </requireEnvironmentVariable>
+                                        <requireEnvironmentVariable>
+                                            <variableName>YAGO_SANDBOX_NAMESPACE</variableName>
                                         </requireEnvironmentVariable>
                                     </rules>
                                     <fail>true</fail>
