@@ -75,7 +75,7 @@ public class ProductService {
 
         LOG.debug("list of products after creation :" + listProductResponse2.getBody().getProducts());
 
-        LOG.info("\n\n**********************************************\n Number of products before creation : "
+        LOG.info("\n\n**********************************************\n Number of products after creation : "
             + listProductResponse2.getBody().getTotalItems()
             + "\n**********************************************\n");
 
