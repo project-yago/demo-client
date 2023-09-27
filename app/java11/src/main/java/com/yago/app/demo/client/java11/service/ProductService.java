@@ -22,12 +22,12 @@ public class ProductService {
         this.applicationProperties = applicationProperties;
         this.restTemplate = restTemplate;
 
-        LOG.info("\n************************************************\n ApplicationProperties : " + applicationProperties + "\n************************************************\n");
+        LOG.debug("\n************************************************\n ApplicationProperties : " + applicationProperties + "\n************************************************\n");
     }
 
     public Product createProductAndListProducts(final Product product) {
 
-        LOG.info("************ Product in input ************ : " + product);
+        LOG.debug("************ Product in input ************ : " + product);
 
         String SANDBOX_API_PAYPAL = applicationProperties.getExternalAPI().getBaseURI();
 
@@ -37,15 +37,23 @@ public class ProductService {
 
         HttpEntity<Void> requestEntityListProducts = new HttpEntity<>(headers);
 
+        LOG.info("\n\n**********************************************\n Calling List Products API Endpoint ...\n**********************************************\n");
+
         ResponseEntity<ListProductsResponse> listProductResponse1 = restTemplate.exchange(
             SANDBOX_API_PAYPAL + "/v1/catalogs/products?page_size=100&page=1&total_required=true",
             HttpMethod.GET,
             requestEntityListProducts,
             ListProductsResponse.class);
 
-        LOG.info("list of products before creation :" + listProductResponse1.getBody().getProducts());
+        LOG.debug("list of products before creation :" + listProductResponse1.getBody().getProducts());
+
+        LOG.info("\n\n**********************************************\n Number of products before creation : "
+            + listProductResponse1.getBody().getTotalItems()
+            + "\n**********************************************\n");
 
         HttpEntity<Product> requestEntityCreateProduct = new HttpEntity<>(product, headers);
+
+        LOG.info("\n\n**********************************************\n Calling Create Product API Endpoint ...\n**********************************************\n");
 
         ResponseEntity<Product> createProductResponse = restTemplate.exchange(
             SANDBOX_API_PAYPAL + "/v1/catalogs/products",
@@ -55,7 +63,9 @@ public class ProductService {
 
         Product createdProduct = createProductResponse.getBody();
 
-        LOG.info("Product created :" + createdProduct);
+        LOG.info("\n\n**********************************************\n Product created : " + createdProduct + "\n**********************************************\n");
+
+        LOG.info("\n\n**********************************************\n Calling List Products API Endpoint ...\n**********************************************\n");
 
         ResponseEntity<ListProductsResponse> listProductResponse2 = restTemplate.exchange(
             SANDBOX_API_PAYPAL + "/v1/catalogs/products?page_size=100&page=1&total_required=true",
@@ -63,7 +73,13 @@ public class ProductService {
             requestEntityListProducts,
             ListProductsResponse.class);
 
-        LOG.info("list of products after creation :" + listProductResponse2.getBody().getProducts());
+        LOG.debug("list of products after creation :" + listProductResponse2.getBody().getProducts());
+
+        LOG.info("\n\n**********************************************\n Number of products before creation : "
+            + listProductResponse2.getBody().getTotalItems()
+            + "\n**********************************************\n");
+
+        LOG.info("\n\n**********************************************\n Calling Get Product API Endpoint ...\n**********************************************\n");
 
         HttpEntity<Void> requestEntityGetProduct = new HttpEntity<>(headers);
 
@@ -75,7 +91,7 @@ public class ProductService {
             requestEntityGetProduct,
             Product.class);
 
-        LOG.info("Get product :" + getProductResponse.getBody());
+        LOG.info("\n\n**********************************************\n Get product : " + getProductResponse.getBody() + "\n**********************************************\n");
 
         return createProductResponse.getBody();
     }
