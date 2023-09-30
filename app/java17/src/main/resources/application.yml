@@ -4,3 +4,9 @@ demo:
         baseURI: ${EXTERNAL_API_BASE_URI:}
         clientId: ${EXTERNAL_API_CLIENT_ID:}
         clientSecret: ${EXTERNAL_API_CLIENT_SECRET:}
+logging:
+    level:
+        root: ERROR
+        org.springframework: INFO
+        com.kayser.agent: INFO
+        com.yago.app.demo: INFO

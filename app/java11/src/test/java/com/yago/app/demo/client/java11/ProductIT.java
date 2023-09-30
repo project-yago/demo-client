@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.MediaType;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.UUID;
 
@@ -19,49 +20,55 @@ public class ProductIT extends AbstractIntegrationTests {
     @Test
     public void createProductAndListProductsTests() {
 
+        LocalDateTime localDateTime1 = LocalDateTime.now();
+        LocalDateTime localDateTime2 = LocalDateTime.now();
+
+        LOG.debug("localDateTime1 : " + localDateTime1);
+        LOG.debug("localDateTime2 : " + localDateTime2);
+
         String useLessUUID = UUID.randomUUID().toString();
 
-        LOG.info("useLessUUID : " + useLessUUID);
+        LOG.debug("useLessUUID : " + useLessUUID);
 
         String randomUUID = UUID.randomUUID().toString();
 
-        LOG.info("randomUUID : " + randomUUID);
+        LOG.debug("randomUUID : " + randomUUID);
 
         Random random = new Random();
 
         Integer randomInteger = Math.abs(random.nextInt(100000));
         Integer randomInteger2 = Math.abs(random.nextInt());
 
-        LOG.info("randomInteger : " + randomInteger);
-        LOG.info("randomInteger2 : " + randomInteger2);
+        LOG.debug("randomInteger : " + randomInteger);
+        LOG.debug("randomInteger2 : " + randomInteger2);
 
         Long randomLong = Math.abs(random.nextLong());
         Long randomLong2 = Math.abs(random.nextLong());
 
-        LOG.info("randomLong : " + randomLong);
-        LOG.info("randomLong2 : " + randomLong2);
+        LOG.debug("randomLong : " + randomLong);
+        LOG.debug("randomLong2 : " + randomLong2);
 
         Float randomFloat = random.nextFloat();
         Float randomFloat2 = random.nextFloat();
 
-        LOG.info("randomFloat : " + randomFloat);
-        LOG.info("randomFloat2 : " + randomFloat2);
+        LOG.debug("randomFloat : " + randomFloat);
+        LOG.debug("randomFloat2 : " + randomFloat2);
 
         Double randomDouble = random.nextDouble();
         Double randomDouble2 = random.nextDouble();
 
-        LOG.info("randomDouble : " + randomDouble);
-        LOG.info("randomDouble2 : " + randomDouble2);
+        LOG.debug("randomDouble : " + randomDouble);
+        LOG.debug("randomDouble2 : " + randomDouble2);
 
         Double randomDouble3 = Math.random();
 
-        LOG.info("randomDouble3 : " + randomDouble3);
+        LOG.debug("randomDouble3 : " + randomDouble3);
 
         Boolean randomBoolean = random.nextBoolean();
         Boolean randomBoolean2 = random.nextBoolean();
 
-        LOG.info("randomBoolean : " + randomBoolean);
-        LOG.info("randomBoolean2 : " + randomBoolean2);
+        LOG.debug("randomBoolean : " + randomBoolean);
+        LOG.debug("randomBoolean2 : " + randomBoolean2);
 
         Faker faker = new Faker();
 
@@ -70,10 +77,10 @@ public class ProductIT extends AbstractIntegrationTests {
         String city = faker.address().city();
         String country = faker.address().country();
 
-        LOG.info("streetName : " + streetName);
-        LOG.info("number : " + number);
-        LOG.info("city : " + city);
-        LOG.info("country : " + country);
+        LOG.debug("streetName : " + streetName);
+        LOG.debug("number : " + number);
+        LOG.debug("city : " + city);
+        LOG.debug("country : " + country);
 
         String testName = "Test Name " + randomInteger;
         String testDescription = "Test Description " + randomInteger;
@@ -97,7 +104,7 @@ public class ProductIT extends AbstractIntegrationTests {
                 .statusCode(200)
                 .extract().response();
 
-        LOG.info("response : " + response.asPrettyString());
+        LOG.debug("response : " + response.asPrettyString());
 
         Product responseProduct = response.getBody().as(Product.class);
 
